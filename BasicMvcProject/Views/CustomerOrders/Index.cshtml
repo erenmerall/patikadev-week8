@@ -1,0 +1,36 @@
+@model BasicMvcProject.ViewModels.CustomerOrderViewModel
+
+@{
+    ViewData["Title"] = "Müşteri Siparişleri";
+}
+
+<h2>Müşteri Bilgileri</h2>
+<ul>
+    <li><strong>ID:</strong> @Model.Customer.Id</li>
+    <li><strong>Ad:</strong> @Model.Customer.FirstName</li>
+    <li><strong>Soyad:</strong> @Model.Customer.LastName</li>
+    <li><strong>E-posta:</strong> @Model.Customer.Email</li>
+</ul>
+
+<h3>Sipariş Listesi</h3>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Sipariş ID</th>
+            <th>Ürün Adı</th>
+            <th>Fiyat (₺)</th>
+            <th>Miktar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.ProductName</td>
+                <td>@order.Price.ToString("N2")</td>
+                <td>@order.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
